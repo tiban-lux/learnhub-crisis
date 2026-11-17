@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0d14">
+<title>LearnHub Crisis</title>
+<style>
+:root{--bg:#0a0d14;--panel:#121826;--panel2:#182033;--line:#2a3550;--text:#f4f6fb;--muted:#a3aec6;--dim:#6b7792;
+  --red:#ff3b47;--amber:#ffb020;--green:#2fd67b;--cyan:#38c8ff;--violet:#9b8cff}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;overflow-x:hidden;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+body{min-height:100vh;padding:0 16px 40px}
+.wrap{max-width:520px;margin:0 auto}
+header{position:sticky;top:0;background:var(--bg);padding:12px 0 10px;z-index:5;border-bottom:1px solid var(--line)}
+.brand{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--dim);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.brand b{color:var(--cyan)}
+.mrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.m{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:6px 8px}
+.m .l{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:10px;color:var(--dim);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.m .v{font-size:19px;font-weight:900;font-variant-numeric:tabular-nums;transition:color .4s}
+.m .bar{height:5px;border-radius:3px;background:#263049;margin-top:4px;overflow:hidden}
+.m .bar i{display:block;height:100%;border-radius:3px;transition:width 1s cubic-bezier(.2,.8,.2,1),background .4s}
+.m .d{font-size:12px;font-weight:800;margin-left:4px}
+.screen{display:none;padding-top:20px;animation:in .35s ease}
+.screen.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.kick{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin:4px 0 8px}
+h1{font-size:30px;line-height:1.1;margin:0 0 12px;font-weight:900}
+h2{font-size:24px;line-height:1.15;margin:0 0 10px;font-weight:900}
+p{font-size:17px;line-height:1.45;color:var(--muted);margin:0 0 14px}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:16px;font-size:18px;font-weight:800;background:var(--cyan);color:#001018;margin-top:12px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);font-size:14px;padding:10px}
+.opt{display:flex;gap:14px;align-items:center;width:100%;text-align:left;background:var(--panel);border:2px solid var(--line);border-radius:16px;
+  padding:14px 14px;margin:10px 0;color:var(--text);font-size:17px;font-weight:700;cursor:pointer;transition:border-color .2s,background .2s}
+.opt .k{flex:none;width:40px;height:40px;border-radius:10px;background:var(--panel2);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;color:var(--cyan)}
+.opt.pick{border-color:var(--cyan);background:#10283a}
+.opt:disabled{cursor:default}
+.opt:disabled:not(.pick){opacity:.4}
+.fx{background:var(--panel2);border-left:4px solid var(--violet);border-radius:10px;padding:14px;margin-top:14px;font-size:17px;line-height:1.4;display:none}
+.fx.on{display:block;animation:in .35s ease}
+.wait{font-size:14px;color:var(--dim);text-align:center;margin-top:10px}
+.steps{display:flex;gap:6px;margin:4px 0 14px}
+.steps i{flex:1;height:4px;border-radius:2px;background:var(--line)}
+.steps i.done{background:var(--cyan)}
+input{width:100%;padding:16px;border-radius:14px;border:2px solid var(--line);background:var(--panel);color:var(--text);font-size:20px;font-weight:800;text-align:center;letter-spacing:.1em;text-transform:uppercase}
+input:focus{outline:none;border-color:var(--cyan)}
+.err{color:var(--red);font-size:14px;text-align:center;min-height:20px;margin-top:6px}
+/* result */
+.paper{background:#f3efe6;color:#141414;border-radius:16px;padding:18px 18px 16px;margin-top:6px}
+.paper .mast{font-family:Georgia,"Times New Roman",serif;font-weight:900;font-size:22px;text-align:center;border-bottom:2px solid #141414;padding-bottom:6px;letter-spacing:.02em}
+.paper .date{font-size:11px;text-align:center;color:#555;margin:4px 0 12px;text-transform:uppercase;letter-spacing:.12em}
+.paper .hl{font-family:Georgia,"Times New Roman",serif;font-size:25px;line-height:1.15;font-weight:900;margin-bottom:12px}
+.paper .because{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:4px}
+.paper ul{list-style:none;margin:0;padding:0}
+.paper li{font-size:15px;line-height:1.35;padding:6px 0;border-top:1px solid #d8d2c4;display:flex;gap:8px}
+.paper li b{flex:none}
+.paper .ok{color:#127a3f}.paper .no{color:#c0182a}
+.sec{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:14px}
+.sec h3{margin:0 0 4px;font-size:18px}
+.sec .sub{font-size:13px;color:var(--dim);margin-bottom:10px}
+.pr{display:grid;grid-template-columns:22px 128px 1fr;gap:8px;align-items:center;margin:8px 0;font-size:15px;font-weight:700}
+.pr .n{color:var(--dim)}
+.pr .b{height:12px;border-radius:6px;background:#263049;overflow:hidden}
+.pr .b i{display:block;height:100%;border-radius:6px;width:0;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.pr small{display:block;font-size:11px;color:var(--dim);font-weight:600}
+.inst{font-size:15px;color:var(--muted);line-height:1.5}
+.inst b{color:var(--text)}
+.same{font-size:30px;font-weight:900;color:var(--cyan)}
+.foot{font-size:12px;color:var(--dim);text-align:center;margin-top:18px;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand"><span><b>LearnHub</b> · management dashboard</span><span id="stepTxt"></span></div>
+  <div class="mrow" id="meters"></div>
+</header>
+
+<!-- WELCOME -->
+<section class="screen" id="s-welcome">
+  <div class="kick">You are now the management</div>
+  <h1>LearnHub is under attack.</h1>
+  <p>LearnHub is a learning platform used by thousands of schools. You will make <b style="color:var(--text)">5 decisions</b>. Each one moves your dashboard.</p>
+  <p>Decide alone. Nobody sees your answers — they stay on this phone.</p>
+  <button class="btn" onclick="go(0)">I'm ready</button>
+  <div class="wait">Wait for the big screen before each decision.</div>
+</section>
+
+<!-- DECISION (re-used) -->
+<section class="screen" id="s-dec">
+  <div class="steps" id="steps"></div>
+  <div class="kick" id="dKick"></div>
+  <h2 id="dTitle"></h2>
+  <p id="dSit"></p>
+  <div id="dOpts"></div>
+  <div class="fx" id="dFx"></div>
+  <button class="btn" id="dNext" style="display:none" onclick="next()">Next decision →</button>
+  <div class="wait" id="dWait" style="display:none">Wait for the big screen, then tap.</div>
+</section>
+
+<!-- LOCK -->
+<section class="screen" id="s-lock">
+  <div class="kick">All 5 decisions made</div>
+  <h1>Your result is ready.</h1>
+  <p>But first: who is LearnHub really? Watch the big screen. Type the name you see there to unlock your result.</p>
+  <input id="code" placeholder="type the name" autocomplete="off" autocapitalize="characters" spellcheck="false">
+  <div class="err" id="err"></div>
+  <button class="btn" onclick="unlock()">Unlock my result</button>
+</section>
+
+<!-- RESULT -->
+<section class="screen" id="s-result">
+  <div class="paper">
+    <div class="mast">The Daily Brief</div>
+    <div class="date">Your LearnHub · after 5 decisions</div>
+    <div class="hl" id="rHead"></div>
+    <div class="because">Because of your decisions</div>
+    <ul id="rBecause"></ul>
+  </div>
+  <div class="sec">
+    <h3>What you put first</h3>
+    <div class="sub">Every decision was a trade-off between these four.</div>
+    <div id="rPrio"></div>
+  </div>
+  <div class="sec">
+    <h3>The real company (Instructure / Canvas)</h3>
+    <div class="inst" id="rInst"></div>
+    <div style="margin-top:10px;font-size:14px;color:var(--dim)">Same choice as Instructure</div>
+    <div class="same" id="rSame"></div>
+  </div>
+  <div class="foot">Your answers stayed on this phone. Nothing was sent anywhere.<br>
+    <a href="#" onclick="restart();return false" style="color:var(--dim)">start again</a></div>
+</section>
+</div>
+
+<script>
+const BASE = [80, 80, 90];
+const MN = ["Trust", "Share price", "Operations"];
+const PRIO = { S:["Safety","protect data & systems"], O:["Openness","tell people the truth"], U:["Users","students & teachers keep working"], M:["Money","protect company value"] };
+const D = [
+  { title:"Data stolen", sit:"Your security team finds that user data was copied: names, emails, student IDs, private messages. Scope unknown. Nobody outside knows yet.",
+    real:1, opts:[
+    { t:"Tell everyone today", fx:"You told people early — but some of your facts will change later.", m:[+5,-12,-5], p:{O:2,U:1} },
+    { t:"Investigate first, tell in 2 days", fx:"Better facts — but rumours started before you spoke.", m:[-6,-4,0], p:{S:2,M:1} },
+    { t:"Fix it quietly, say nothing", fx:"A journalist found out. Now it looks like a cover-up.", m:[-30,-8,+5], p:{M:2,S:1} } ] },
+  { title:"Is it over?", sit:"Five days later. The board wants to close the case. Your experts say: “We are not 100% sure the hackers are gone.”",
+    real:0, opts:[
+    { t:"Announce: “Resolved”", fx:"The next day the hackers were back. Your word is worth less now.", m:[-15,+3,0], p:{M:2,U:1} },
+    { t:"Say: “We are still checking”", fx:"Less calming — but honest. Nobody can call you a liar later.", m:[+5,-5,0], p:{O:2,S:1} },
+    { t:"Say nothing for now", fx:"Silence. People fill the gap with their own stories.", m:[-8,0,0], p:{S:1,M:1} } ] },
+  { title:"Finals week", sit:"The hackers are back. Login pages at hundreds of universities show their extortion message. Exams are due today.",
+    real:0, opts:[
+    { t:"Shut the platform down", fx:"Safe — but no exams submitted and professors can't grade.", m:[+5,-10,-30], p:{S:2} },
+    { t:"Keep it running", fx:"Exams go on — through an extortion page. Screenshots go viral.", m:[-25,-12,+5], p:{U:2,M:1} },
+    { t:"Partial shutdown", fx:"Damage limited, the core still works — but users are confused.", m:[-2,-6,-15], p:{S:1,U:1} } ] },
+  { title:"Extortion", sit:"“Pay — or every private message goes public.” Deadline: 24 hours. They claim data on 275 million users.",
+    real:0, opts:[
+    { t:"Pay or negotiate", fx:"The deadline passes quietly — but criminals got paid, and “deleted” can't be checked.", m:[-10,+6,+10], p:{M:2,U:1} },
+    { t:"Refuse, say nothing", fx:"No money for criminals — but users feel left alone.", m:[-15,-12,0], p:{S:1,M:1} },
+    { t:"Call the police, refuse publicly", fx:"A clear position. The risk: the data leaks anyway.", m:[+12,-8,-5], p:{O:2,S:1} } ] },
+  { title:"After the storm", sit:"It's over. You have budget for ONE fix first. The hackers came in through free teacher accounts — and the same group attacked you 8 months ago.",
+    real:0, opts:[
+    { t:"Close the free accounts", fx:"The door is shut — but you lose an easy way to win new schools.", m:[+5,-5,+5], p:{S:2} },
+    { t:"Full security check of everything", fx:"You finally act on the old warning. Slow, but it looks for every open door.", m:[+5,-3,0], p:{S:1,O:1} },
+    { t:"Crisis plan + public apology", fx:"Users hear you. But the door the hackers used is still open.", m:[+10,0,0], p:{O:2,U:1} } ] }
+];
+const CODE = "CANVAS";
+
+let st = { started:false, choices:[null,null,null,null,null], cur:0, unlocked:false };
+try { const s = JSON.parse(localStorage.getItem("lh_phone")); if (s && Array.isArray(s.choices)) st = s; } catch(e){}
+const save = () => { try { localStorage.setItem("lh_phone", JSON.stringify(st)); } catch(e){} };
+
+const clamp = v => Math.max(0, Math.min(100, v));
+const col = v => v >= 60 ? "var(--green)" : v >= 35 ? "var(--amber)" : "var(--red)";
+const fmt = (i,v) => i === 1 ? "$" + (23.60*v/80).toFixed(2) : Math.round(v) + "%";
+function vals(choices){ const v = BASE.slice(); choices.forEach((c,r) => { if (c != null) D[r].opts[c].m.forEach((x,i) => v[i] = clamp(v[i]+x)); }); return v; }
+
+/* meters */
+document.getElementById("meters").innerHTML = MN.map((n,i) => `<div class="m"><div class="l">${n}<span class="d" id="md${i}"></span></div><div class="v" id="mv${i}"></div><div class="bar"><i id="mb${i}"></i></div></div>`).join("");
+let shown = BASE.slice();
+function drawMeters(delta){
+  const v = vals(st.choices);
+  v.forEach((to,i) => {
+    const from = shown[i], el = document.getElementById("mv"+i), b = document.getElementById("mb"+i), d = document.getElementById("md"+i);
+    b.style.width = to + "%"; b.style.background = col(to);
+    const t0 = performance.now();
+    (function f(t){ const p = Math.min(1,(t-t0)/900), e = 1-Math.pow(1-p,3), x = from+(to-from)*e;
+      el.textContent = fmt(i,x); el.style.color = col(x); if (p<1) requestAnimationFrame(f); })(t0);
+    if (delta){ const x = delta[i]; d.textContent = x ? (x>0?"+":"")+x : ""; d.style.color = x>0 ? "var(--green)" : "var(--red)"; }
+    else d.textContent = "";
+  });
+  shown = v.slice();
+}
+
+/* screens */
+function show(id){ document.querySelectorAll(".screen").forEach(s => s.classList.toggle("on", s.id === id)); scrollTo(0,0); }
+function stepTxt(){ const n = st.choices.filter(c => c != null).length; document.getElementById("stepTxt").textContent = st.started ? n + " / 5" : ""; }
+
+function go(r){ st.started = true; st.cur = r; save(); renderDec(); }
+function renderDec(){
+  const r = st.cur, d = D[r], c = st.choices[r];
+  document.getElementById("steps").innerHTML = D.map((_,i) => `<i class="${i < r || st.choices[i] != null ? "done" : ""}"></i>`).join("");
+  document.getElementById("dKick").textContent = "Decision " + (r+1) + " of 5";
+  document.getElementById("dTitle").textContent = d.title;
+  document.getElementById("dSit").textContent = d.sit;
+  document.getElementById("dOpts").innerHTML = d.opts.map((o,i) =>
+    `<button class="opt ${c===i?"pick":""}" ${c!=null?"disabled":""} onclick="choose(${i})"><span class="k">${"ABC"[i]}</span><span>${o.t}</span></button>`).join("");
+  const fx = document.getElementById("dFx");
+  if (c != null){ fx.textContent = d.opts[c].fx; fx.classList.add("on"); } else fx.classList.remove("on");
+  document.getElementById("dNext").style.display = c != null ? "block" : "none";
+  document.getElementById("dNext").textContent = r < 4 ? "Next decision →" : "Continue →";
+  document.getElementById("dWait").style.display = c != null && r < 4 ? "block" : "none";
+  stepTxt(); show("s-dec");
+}
+function choose(i){
+  const r = st.cur; if (st.choices[r] != null) return;
+  st.choices[r] = i; save(); renderDec(); drawMeters(D[r].opts[i].m);
+}
+function next(){
+  if (st.cur < 4){ st.cur++; save(); renderDec(); drawMeters(null); }
+  else { save(); show(st.unlocked ? "s-result" : "s-lock"); if (st.unlocked) renderResult(); }
+}
+function unlock(){
+  const v = document.getElementById("code").value.trim().toUpperCase();
+  if (v === CODE){ st.unlocked = true; save(); renderResult(); show("s-result"); }
+  else document.getElementById("err").textContent = "Not quite — look at the big screen.";
+}
+document.getElementById("code").addEventListener("keydown", e => { if (e.key === "Enter") unlock(); });
+
+/* result */
+function prio(choices){
+  const s = {S:0,O:0,U:0,M:0}; choices.forEach((c,r) => { if (c != null) Object.entries(D[r].opts[c].p).forEach(([k,x]) => s[k] += x); });
+  return Object.entries(s).sort((a,b) => b[1]-a[1] || "SOUM".indexOf(a[0]) - "SOUM".indexOf(b[0]));
+}
+function headline(v){
+  const [T,,O] = v;
+  if (T >= 70 && O >= 70) return "LearnHub survives the attack — and users still trust it";
+  if (T >= 70) return "Users still trust LearnHub — but finals week was chaos";
+  if (T < 45 && O >= 70) return "LearnHub keeps running — but users stop trusting it";
+  if (T < 45) return "LearnHub in crisis: platform down, trust gone";
+  return "LearnHub survives — with scars";
+}
+function renderResult(){
+  const v = vals(st.choices); shown = BASE.slice(); drawMeters(null);
+  document.getElementById("rHead").textContent = "“" + headline(v) + "”";
+  const eff = st.choices.map((c,r) => ({ r, o:D[r].opts[c] })).filter(x => x.o)
+    .map(x => ({ ...x, w: Math.abs(x.o.m[0]) + Math.abs(x.o.m[1]) + Math.abs(x.o.m[2]) }))
+    .sort((a,b) => b.w - a.w).slice(0,3).sort((a,b) => a.r - b.r);
+  document.getElementById("rBecause").innerHTML = eff.map(x => {
+    return `<li><b>→</b><span>${x.o.fx}</span></li>`; }).join("");
+  const p = prio(st.choices), max = Math.max(1, p[0][1]);
+  document.getElementById("rPrio").innerHTML = p.map(([k,x],i) =>
+    `<div class="pr"><span class="n">${i+1}.</span><span>${PRIO[k][0]}<small>${PRIO[k][1]}</small></span><span class="b"><i data-w="${x/max*100}" style="background:${["var(--cyan)","var(--violet)","var(--amber)","var(--dim)"][i]}"></i></span></div>`).join("");
+  requestAnimationFrame(() => setTimeout(() => document.querySelectorAll(".pr .b i").forEach(i => i.style.width = i.dataset.w + "%"), 60));
+  const real = D.map(d => d.real), rp = prio(real);
+  document.getElementById("rInst").innerHTML = "Put first: <b>" + rp.map(([k]) => PRIO[k][0]).join(" → ") + "</b><br>Openness came last — and on May 11 Instructure apologised for a lack of transparency.";
+  const same = st.choices.filter((c,r) => c === D[r].real).length;
+  document.getElementById("rSame").textContent = same + " of 5";
+}
+function restart(){ st = { started:false, choices:[null,null,null,null,null], cur:0, unlocked:false }; save(); shown = BASE.slice(); drawMeters(null); stepTxt(); show("s-welcome"); }
+
+/* demo / rehearsal: ?demo=0,1,2,0,1 */
+try { const q = new URLSearchParams(location.search).get("demo"); if (q){ const c = q.split(",").map(Number);
+  st = { started:true, choices:c, cur:4, unlocked:true }; } } catch(e){}
+/* boot */
+drawMeters(null); stepTxt();
+if (!st.started) show("s-welcome");
+else if (st.choices.every(c => c != null) && (st.cur === 4)) { if (st.unlocked){ renderResult(); show("s-result"); } else show("s-lock"); }
+else renderDec();
+</script>
+</body>
+</html>

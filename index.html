@@ -101,10 +101,10 @@ input:focus{outline:none;border-color:var(--cyan)}
 
 <!-- LOCK -->
 <section class="screen" id="s-lock">
-  <div class="kick">All 5 decisions made</div>
-  <h1>Your result is ready.</h1>
-  <p>But first: who is LearnHub really? Watch the big screen. Type the name you see there to unlock your result.</p>
-  <input id="code" placeholder="type the name" autocomplete="off" autocapitalize="characters" spellcheck="false">
+  <div class="kick">All 5 decisions made ✓</div>
+  <h1>Your result is locked — for one minute.</h1>
+  <p>LearnHub is not a made-up company. In a moment, the <b style="color:var(--text)">big screen will show its real name</b>.</p><p>Type that name here to unlock your result.</p>
+  <input id="code" placeholder="real name from the big screen" autocomplete="off" autocapitalize="characters" spellcheck="false">
   <div class="err" id="err"></div>
   <button class="btn" onclick="unlock()">Unlock my result</button>
 </section>
@@ -153,7 +153,7 @@ const D = [
     real:0, opts:[
     { t:"Shut the platform down", fx:"Safe — but no exams submitted and professors can't grade.", m:[+5,-10,-30], p:{S:2} },
     { t:"Keep it running", fx:"Exams go on — through an extortion page. Screenshots go viral.", m:[-25,-12,+5], p:{U:2,M:1} },
-    { t:"Partial shutdown", fx:"Damage limited, the core still works — but users are confused.", m:[-2,-6,-15], p:{S:1,U:1} } ] },
+    { t:"Partial shutdown: block the login page, keep exams & grades running", fx:"The extortion page is gone and exams still run — but users are confused about what works.", m:[-2,-6,-15], p:{S:1,U:1} } ] },
   { title:"Extortion", sit:"“Pay — or every private message goes public.” Deadline: 24 hours. They claim data on 275 million users.",
     real:0, opts:[
     { t:"Pay or negotiate", fx:"The deadline passes quietly — but criminals got paid, and “deleted” can't be checked.", m:[-10,+6,+10], p:{M:2,U:1} },

@@ -112,8 +112,8 @@ input:focus{outline:none;border-color:var(--cyan)}
 <!-- RESULT -->
 <section class="screen" id="s-result">
   <div class="paper">
-    <div class="mast">The Daily Brief</div>
-    <div class="date">Your LearnHub · after 5 decisions</div>
+    <div class="mast">Tomorrow’s News</div>
+    <div class="date">about your LearnHub · after 5 decisions</div>
     <div class="hl" id="rHead"></div>
     <div class="because">Because of your decisions</div>
     <ul id="rBecause"></ul>
@@ -141,7 +141,7 @@ const PRIO = { S:["Safety","protect data & systems"], O:["Openness","tell people
 const D = [
   { title:"Data stolen", sit:"Your security team finds that user data was copied: names, emails, student IDs, private messages. Scope unknown. Nobody outside knows yet.",
     real:1, opts:[
-    { t:"Tell everyone today", fx:"You told people early — but some of your facts will change later.", m:[+5,-12,-5], p:{O:2,U:1} },
+    { t:"Tell everyone today", fx:"You told people early — but you didn’t know everything yet, so you had to correct yourself later.", m:[+5,-12,-5], p:{O:2,U:1} },
     { t:"Investigate first, tell in 2 days", fx:"Better facts — but rumours started before you spoke.", m:[-6,-4,0], p:{S:2,M:1} },
     { t:"Fix it quietly, say nothing", fx:"A journalist found out. Now it looks like a cover-up.", m:[-30,-8,+5], p:{M:2,S:1} } ] },
   { title:"Is it over?", sit:"Five days later. The board wants to close the case. Your experts say: “We are not 100% sure the hackers are gone.”",

@@ -46,27 +46,41 @@ p{font-size:17px;line-height:1.45;color:var(--muted);margin:0 0 14px}
 input{width:100%;padding:16px;border-radius:14px;border:2px solid var(--line);background:var(--panel);color:var(--text);font-size:20px;font-weight:800;text-align:center;letter-spacing:.1em;text-transform:uppercase}
 input:focus{outline:none;border-color:var(--cyan)}
 .err{color:var(--red);font-size:14px;text-align:center;min-height:20px;margin-top:6px}
-/* result */
-.paper{background:#f3efe6;color:#141414;border-radius:16px;padding:18px 18px 16px;margin-top:6px}
-.paper .mast{font-family:Georgia,"Times New Roman",serif;font-weight:900;font-size:22px;text-align:center;border-bottom:2px solid #141414;padding-bottom:6px;letter-spacing:.02em}
-.paper .date{font-size:11px;text-align:center;color:#555;margin:4px 0 12px;text-transform:uppercase;letter-spacing:.12em}
-.paper .hl{font-family:Georgia,"Times New Roman",serif;font-size:25px;line-height:1.15;font-weight:900;margin-bottom:12px}
-.paper .because{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:4px}
+/* result: newspaper */
+.label{font-size:13px;color:var(--muted);text-align:center;margin:2px 0 8px;line-height:1.4}
+.label b{color:var(--text)}
+.paper{background:#f4f0e6;color:#161616;border-radius:4px;padding:12px 14px 14px;font-family:Georgia,"Times New Roman",serif;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.paper .top{display:flex;justify-content:space-between;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#444;border-bottom:1px solid #161616;padding-bottom:4px}
+.paper .mast{font-family:"Old English Text MT","UnifrakturMaguntia",Georgia,serif;font-size:38px;line-height:1.05;text-align:center;margin:6px 0 4px;font-weight:700}
+.paper .rule2{border-top:3px double #161616;border-bottom:1px solid #161616;height:4px;margin:4px 0 6px}
+.paper .sect{font-family:system-ui,Arial,sans-serif;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#a3121f;margin:6px 0 4px}
+.paper .hl{font-size:27px;line-height:1.08;font-weight:900;margin:0 0 6px;letter-spacing:-.01em}
+.paper .deck{font-size:14px;font-style:italic;color:#333;line-height:1.35;margin-bottom:6px}
+.paper .by{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#555;border-top:1px solid #bbb;border-bottom:1px solid #bbb;padding:3px 0;margin-bottom:8px}
+.paper .cols{display:grid;grid-template-columns:1.35fr 1fr;gap:12px}
+.paper .cols>div+div{border-left:1px solid #bbb;padding-left:12px}
+.paper h4{font-size:12px;margin:0 0 4px;text-transform:uppercase;letter-spacing:.06em}
 .paper ul{list-style:none;margin:0;padding:0}
-.paper li{font-size:15px;line-height:1.35;padding:6px 0;border-top:1px solid #d8d2c4;display:flex;gap:8px}
-.paper li b{flex:none}
-.paper .ok{color:#127a3f}.paper .no{color:#c0182a}
+.paper li{font-size:13px;line-height:1.35;padding:4px 0;border-top:1px dotted #aaa}
+.paper li:first-child{border-top:0}
+.paper .num{font-size:12px;line-height:1.3;padding:4px 0;border-top:1px dotted #aaa}
+.paper .num:first-child{border-top:0}
+.paper .num b{display:block;font-size:20px}
 .sec{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:14px}
 .sec h3{margin:0 0 4px;font-size:18px}
 .sec .sub{font-size:13px;color:var(--dim);margin-bottom:10px}
-.pr{display:grid;grid-template-columns:22px 128px 1fr;gap:8px;align-items:center;margin:8px 0;font-size:15px;font-weight:700}
-.pr .n{color:var(--dim)}
-.pr .b{height:12px;border-radius:6px;background:#263049;overflow:hidden}
-.pr .b i{display:block;height:100%;border-radius:6px;width:0;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
-.pr small{display:block;font-size:11px;color:var(--dim);font-weight:600}
-.inst{font-size:15px;color:var(--muted);line-height:1.5}
-.inst b{color:var(--text)}
+.leg{display:flex;gap:14px;font-size:12px;color:var(--muted);margin-bottom:6px}
+.leg i{display:inline-block;width:12px;height:8px;border-radius:3px;margin-right:5px;vertical-align:middle}
+.pr{margin:10px 0}
+.pr .nm{font-size:15px;font-weight:800}
+.pr .nm small{font-size:11px;color:var(--dim);font-weight:600;margin-left:6px}
+.pr .row{display:grid;grid-template-columns:76px 1fr 18px;gap:8px;align-items:center;margin-top:4px;font-size:11px;color:var(--dim)}
+.pr .b{height:10px;border-radius:5px;background:#263049;overflow:hidden}
+.pr .b i{display:block;height:100%;border-radius:5px;width:0;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.pr .row span:last-child{text-align:right;font-weight:800;color:var(--muted)}
 .same{font-size:30px;font-weight:900;color:var(--cyan)}
+.warnbox{margin-top:10px;font-size:14px;line-height:1.45;color:var(--muted);border-left:3px solid var(--amber);padding-left:10px}
+.warnbox b{color:var(--amber)}
 .foot{font-size:12px;color:var(--dim);text-align:center;margin-top:18px;line-height:1.5}
 </style>
 </head>
@@ -111,23 +125,30 @@ input:focus{outline:none;border-color:var(--cyan)}
 
 <!-- RESULT -->
 <section class="screen" id="s-result">
+  <div class="label">This is what the <b>newspapers write about your company</b> — because of your 5 decisions.</div>
   <div class="paper">
-    <div class="mast">Tomorrow’s News</div>
-    <div class="date">about your LearnHub · after 5 decisions</div>
+    <div class="top"><span>Vol. 1 · No. 5</span><span>Friday edition</span><span>€2.00</span></div>
+    <div class="mast">The Daily News</div>
+    <div class="rule2"></div>
+    <div class="sect">Business · Technology</div>
     <div class="hl" id="rHead"></div>
-    <div class="because">Because of your decisions</div>
-    <ul id="rBecause"></ul>
+    <div class="deck">Hackers hit the learning platform. Its managers had to make five hard decisions — here is what they caused.</div>
+    <div class="by">By our technology reporter</div>
+    <div class="cols">
+      <div><h4>What happened</h4><ul id="rBecause"></ul></div>
+      <div><h4>The numbers</h4><div id="rNums"></div></div>
+    </div>
   </div>
   <div class="sec">
     <h3>What you put first</h3>
-    <div class="sub">Every decision was a trade-off between these four.</div>
+    <div class="sub">Every decision was a trade-off between these four. Your points vs. the real company.</div>
+    <div class="leg"><span><i style="background:var(--cyan)"></i>You</span><span><i style="background:var(--amber)"></i>Instructure (Canvas)</span></div>
     <div id="rPrio"></div>
   </div>
   <div class="sec">
-    <h3>The real company (Instructure / Canvas)</h3>
-    <div class="inst" id="rInst"></div>
-    <div style="margin-top:10px;font-size:14px;color:var(--dim)">Same choice as Instructure</div>
+    <h3>Same choice as Instructure</h3>
     <div class="same" id="rSame"></div>
+    <div class="warnbox"><b>Same choice ≠ right choice.</b> Instructure made mistakes too — for example, it called the attack “resolved” one day before the hackers came back. Watch the big screen for our verdict.</div>
   </div>
   <div class="foot">Your answers stayed on this phone. Nothing was sent anywhere.<br>
     <a href="#" onclick="restart();return false" style="color:var(--dim)">start again</a></div>
@@ -241,20 +262,23 @@ function headline(v){
   if (T < 45) return "LearnHub in crisis: platform down, trust gone";
   return "LearnHub survives — with scars";
 }
+function score(choices){ const s = {S:0,O:0,U:0,M:0}; choices.forEach((c,r) => { if (c != null) Object.entries(D[r].opts[c].p).forEach(([k,x]) => s[k] += x); }); return s; }
 function renderResult(){
   const v = vals(st.choices); shown = BASE.slice(); drawMeters(null);
-  document.getElementById("rHead").textContent = "“" + headline(v) + "”";
+  document.getElementById("rHead").textContent = headline(v);
   const eff = st.choices.map((c,r) => ({ r, o:D[r].opts[c] })).filter(x => x.o)
     .map(x => ({ ...x, w: Math.abs(x.o.m[0]) + Math.abs(x.o.m[1]) + Math.abs(x.o.m[2]) }))
     .sort((a,b) => b.w - a.w).slice(0,3).sort((a,b) => a.r - b.r);
-  document.getElementById("rBecause").innerHTML = eff.map(x => {
-    return `<li><b>→</b><span>${x.o.fx}</span></li>`; }).join("");
-  const p = prio(st.choices), max = Math.max(1, p[0][1]);
-  document.getElementById("rPrio").innerHTML = p.map(([k,x],i) =>
-    `<div class="pr"><span class="n">${i+1}.</span><span>${PRIO[k][0]}<small>${PRIO[k][1]}</small></span><span class="b"><i data-w="${x/max*100}" style="background:${["var(--cyan)","var(--violet)","var(--amber)","var(--dim)"][i]}"></i></span></div>`).join("");
+  document.getElementById("rBecause").innerHTML = eff.map(x => `<li>${x.o.fx}</li>`).join("");
+  document.getElementById("rNums").innerHTML = MN.map((n,i) => `<div class="num">${n}<b>${fmt(i,v[i])}</b></div>`).join("");
+  const me = score(st.choices), inst = score(D.map(d => d.real));
+  const order = prio(st.choices), max = Math.max(1, ...Object.values(me), ...Object.values(inst));
+  document.getElementById("rPrio").innerHTML = order.map(([k],i) => `
+    <div class="pr"><div class="nm">${i+1}. ${PRIO[k][0]}<small>${PRIO[k][1]}</small></div>
+      <div class="row"><span>You</span><span class="b"><i data-w="${me[k]/max*100}" style="background:var(--cyan)"></i></span><span>${me[k]}</span></div>
+      <div class="row"><span>Instructure</span><span class="b"><i data-w="${inst[k]/max*100}" style="background:var(--amber)"></i></span><span>${inst[k]}</span></div>
+    </div>`).join("");
   requestAnimationFrame(() => setTimeout(() => document.querySelectorAll(".pr .b i").forEach(i => i.style.width = i.dataset.w + "%"), 60));
-  const real = D.map(d => d.real), rp = prio(real);
-  document.getElementById("rInst").innerHTML = "Put first: <b>" + rp.map(([k]) => PRIO[k][0]).join(" → ") + "</b><br>Openness came last — and on May 11 Instructure apologised for a lack of transparency.";
   const same = st.choices.filter((c,r) => c === D[r].real).length;
   document.getElementById("rSame").textContent = same + " of 5";
 }
